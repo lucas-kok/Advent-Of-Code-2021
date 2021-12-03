@@ -26,6 +26,8 @@ public class Day3 {
         int carbonRating = 0;
 
         try (Scanner scanner = new Scanner(Paths.get("day3.txt"))) {
+
+            // Part 1
             while (scanner.hasNextLine()) {
                 
                 // Counting the zero's on all indexes
@@ -55,6 +57,7 @@ public class Day3 {
             gammaValue = Integer.parseInt(gammaString.toString(), 2);
             epsilonValue = Integer.parseInt(epsilonString.toString(), 2);
 
+            // Part 2
             // Calculating the Oxygen Rating
             zeros = new int[12];
 
@@ -67,7 +70,7 @@ public class Day3 {
                     }
                 }
 
-                // Removing all bits with a 0 when there are more, or equal 1's then 0's
+                // Removing all bits with on the index a 0 when there are more, or equal 1's then 0's
                 if (zeros[index] <= values.size() / 2) {
                     for (int j = 0; j < values.size(); j++) {
                         if (values.get(j).charAt(index) == '0') {
@@ -75,7 +78,7 @@ public class Day3 {
                             j--;
                         }
                     }
-                } else { // Removing all bits with a 1 when there are more 0's
+                } else {
                     for (int j = 0; j < values.size(); j++) {
                         if (values.get(j).charAt(index) == '1') {
                             values.remove(j);
@@ -105,7 +108,7 @@ public class Day3 {
                     }
                 }
 
-                // Removing all bits with a 0 when there are more, or equal 1's then 0's
+                // Removing all bits with on the index a 0 when there are more, or equal 1's then 0's
                 if (zeros[index] > values.size() / 2) {
                     for (int j = 0; j < values.size(); j++) {
                         if (values.get(j).charAt(index) == '0') {
@@ -113,7 +116,7 @@ public class Day3 {
                             j--;
                         }
                     }
-                } else { // Removing all bits with a 1 when there are more 0's
+                } else {
                     for (int j = 0; j < values.size(); j++) {
                         if (values.get(j).charAt(index) == '1') {
                             values.remove(j);
