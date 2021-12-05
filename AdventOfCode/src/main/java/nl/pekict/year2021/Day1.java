@@ -55,5 +55,4 @@ public class Day1 {
         System.out.println("Antwoord 1: " + increasingNumberCount);
         System.out.println("Antwoord 2: " + increasingRowCount);
     }
-
 }

@@ -10,6 +10,7 @@ public class Day5 {
     }
 
     public static void solution() {
+        
         // Part 1
         int[][] simpleDataMap = new int[999][999];
         int[][] fullDataMap = new int[999][999]; // With vertical Lines
@@ -76,5 +77,4 @@ public class Day5 {
         System.out.println("Antwoord 1: " + overlappingTotal[0]);
         System.out.println("Antwoord 2: " + overlappingTotal[1]);
     }
-    
 }
