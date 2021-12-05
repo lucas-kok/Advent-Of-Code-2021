@@ -10,7 +10,6 @@ public class Day5 {
     }
 
     public static void solution() {
-        
         // Part 1
         int[][] simpleDataMap = new int[999][999];
         int[][] fullDataMap = new int[999][999]; // With vertical Lines
@@ -28,7 +27,7 @@ public class Day5 {
 
                 if (xDomain == 0) { // Vertical Line
                     int yOffset = beginCoord[1];
-                    if (beginCoord[1] > endCoord[1]) { // Smallest y
+                    if (beginCoord[1] > endCoord[1]) {
                         yOffset = endCoord[1];
                     }
 
@@ -38,7 +37,7 @@ public class Day5 {
                     }
                 } else if (yDomain == 0) { // Horizontal Line
                     int xOffset = beginCoord[0];
-                    if (beginCoord[0] > endCoord[0]) { // Smallest x
+                    if (beginCoord[0] > endCoord[0]) {
                         xOffset = endCoord[0];
                     }
 
@@ -50,12 +49,11 @@ public class Day5 {
                     int[] currentCoord = beginCoord;
                     int[] lastCoords = endCoord;
 
-                    if (beginCoord[0] > endCoord[0]) { // Point with smallest x
+                    if (beginCoord[0] > endCoord[0]) {
                         currentCoord = endCoord;
                         lastCoords = beginCoord;
                     }
 
-                    // Creating a line and adding those points
                     int direction = (currentCoord[1] - lastCoords[1]) / (currentCoord[0] - lastCoords[0]);
                     while (currentCoord[0] != lastCoords[0] && currentCoord[1] != lastCoords[1]) {
                         fullDataMap[currentCoord[1]][currentCoord[0]]++;
@@ -65,7 +63,6 @@ public class Day5 {
                 }
             }
             
-            // Counting the number of overlappings
             for (int i = 0; i < fullDataMap.length; i++) {
                 for (int j = 0; j < fullDataMap[i].length; j++) {
                     if (simpleDataMap[i][j] >= 2) { overlappingTotal[0]++; }
@@ -79,5 +76,5 @@ public class Day5 {
         System.out.println("Antwoord 1: " + overlappingTotal[0]);
         System.out.println("Antwoord 2: " + overlappingTotal[1]);
     }
-
+    
 }
