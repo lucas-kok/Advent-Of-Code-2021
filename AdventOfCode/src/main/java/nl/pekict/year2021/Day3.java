@@ -141,5 +141,4 @@ public class Day3 {
         System.out.println("Antwoord 1: " + gammaValue * epsilonValue);
         System.out.println("Antwoord 2: " + oxygenRating * carbonRating);
     }
-    
 }

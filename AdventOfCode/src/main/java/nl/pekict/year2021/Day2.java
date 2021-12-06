@@ -42,5 +42,4 @@ public class Day2 {
         System.out.println("Antwoord 1: " + location[0] * location[1]);
         System.out.println("Antwoord 2: " + location[0] * aimDepth);
     }
-    
 }

@@ -120,5 +120,4 @@ public class Day4 {
         System.out.println("Antwoord 1: " + winnerTotal);
         System.out.println("Antwoord 2: " + lastTotal);
     }
-
 }
