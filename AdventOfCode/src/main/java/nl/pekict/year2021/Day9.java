@@ -13,7 +13,6 @@ public class Day9 {
     public static void solution() {
         // Part 1
         Map<String, Integer> depthMap = new HashMap();
-        ArrayList<String> basins = new ArrayList<>();
         ArrayList<Integer> basinSizes = new ArrayList<>();
         int totalSum = 0;
         int totalMultiply = 1;
@@ -27,7 +26,7 @@ public class Day9 {
                 index++;
             }
 
-            // Part 2, Not the right answer
+            ArrayList<String> ignoringPositions = new ArrayList<>();
             for (String key : depthMap.keySet()) {
                 int currentNumber = depthMap.get(key);
                 String[] pieces = key.split("-");
@@ -39,61 +38,59 @@ public class Day9 {
                 };
                 boolean smallest = true;
 
-                for (int i = 0; i < locations.length; i++) {
-                    if (depthMap.get(locations[i]) != null && currentNumber >= depthMap.get(locations[i])) {
+                for (String s : locations) {
+                    if (depthMap.get(s) != null && currentNumber >= depthMap.get(s)) {
                         smallest = false;
                     }
                 }
 
-                if (smallest) {
+                if (smallest) { // Is a Basin
                     totalSum += 1 + currentNumber;
+
+                    // Part 2, Calculating the size of the basin
                     int basinSize = 0;
+                    ArrayList<String> possibleCoords = new ArrayList<>();
+                    possibleCoords.add(key);
 
-                    int xPosition = Integer.parseInt(pieces[1]);
-                    int newYPosition = Integer.parseInt(pieces[0]);
-                    int yPosition = Integer.parseInt(pieces[0]);
-                    while (true) { // Calculating the point the most to the right
-                        if (depthMap.get(yPosition + "-" + (xPosition + 1)) != null && depthMap.get(yPosition + "-" + (xPosition + 1)) != 9) {
-                            xPosition++;
-                            while (depthMap.get(yPosition - 1 + "-" + xPosition) != null && depthMap.get(yPosition - 1 + "-" + xPosition) != 9) {
-                                yPosition--;
+                    while (possibleCoords.size() != 0) {
+                        String possiblePoint = possibleCoords.get(0);
+                        if (!ignoringPositions.contains(possiblePoint)) {
+                            String[] currentPieces = possiblePoint.split("-");
+                            String[] currentSurroundingLocations = {
+                                    currentPieces[0] + "-" + (Integer.parseInt(currentPieces[1]) + 1),
+                                    currentPieces[0] + "-" + (Integer.parseInt(currentPieces[1]) - 1),
+                                    Integer.parseInt(currentPieces[0]) - 1 + "-" + currentPieces[1],
+                                    Integer.parseInt(currentPieces[0]) + 1 + "-" + currentPieces[1]
+                            };
+
+                            boolean isSmaller = false;
+                            for (String location : currentSurroundingLocations) {
+                                if (depthMap.get(location) != null && depthMap.get(location) < 9) {
+                                    if (!isSmaller) {
+                                        isSmaller = true;
+                                    }
+
+                                    if (depthMap.get(location) != 9) {
+                                        possibleCoords.add(location);
+                                    }
+                                }
                             }
-                        } else if (depthMap.get(yPosition + 1 + "-" + xPosition) != null && depthMap.get(yPosition + 1 + "-" + xPosition) != 9){
-                            yPosition++;
+
+                            ignoringPositions.add(possiblePoint);
+                            possibleCoords.remove(possiblePoint);
+                            if (isSmaller) {
+                                basinSize++;
+                            }
+
                         } else {
-                            String key1 = yPosition + "-" + (xPosition + 1);
-                            if (depthMap.get(key1) == null || depthMap.get(key1) == 9){
-                                break;
-                            }
-                        }
-                    }
-
-                    while (true) { // Walking back to the most left point
-                        while (depthMap.get(yPosition + 1 + "-" + xPosition) != null && depthMap.get(yPosition + 1 + "-" + xPosition) != 9 ) {
-                            yPosition++;
-                        }
-
-                        while (depthMap.get(yPosition + "-" + xPosition) != null && depthMap.get(yPosition + "-" + xPosition) != 9) {
-                            String key1 = yPosition + "-" + (xPosition - 1);
-                            if (depthMap.get(key1) != null && depthMap.get(key1) != 9) {
-                                newYPosition = yPosition;
-                            }
-
-                            basinSize++;
-                            yPosition--;
-                        }
-
-                        xPosition--;
-                        yPosition = newYPosition;
-                        if (depthMap.get(yPosition + "-" + xPosition) == null || depthMap.get(yPosition + "-" + xPosition) == 9) {
-                            break;
+                            possibleCoords.remove(possiblePoint);
                         }
                     }
                     basinSizes.add(basinSize);
                 }
             }
 
-            Collections.sort(basinSizes, Collections.reverseOrder());
+            basinSizes.sort(Collections.reverseOrder());
             for (int i = 0; i < 3; i++) {
                 totalMultiply *= basinSizes.get(i);
             }
