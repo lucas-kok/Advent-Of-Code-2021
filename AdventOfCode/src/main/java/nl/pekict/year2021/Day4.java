@@ -13,8 +13,8 @@ public class Day4 {
     }
 
     public static void solution() {
-
         // Part 1
+        long startTime = System.currentTimeMillis();
         ArrayList<Integer> drawingNumbers = new ArrayList<>();
         ArrayList<Integer> drawedNumbers = new ArrayList<>();
 
@@ -116,8 +116,11 @@ public class Day4 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
         
         System.out.println("Antwoord 1: " + winnerTotal);
         System.out.println("Antwoord 2: " + lastTotal);
+        System.out.println("Tijd: " + totalTime);
     }
 }

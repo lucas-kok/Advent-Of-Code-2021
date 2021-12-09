@@ -10,6 +10,8 @@ public class Day2 {
     }
 
     public static void solution() {
+        // Part 1
+        long startTime = System.currentTimeMillis();
         int[] location = new int[2];
         int aim = 0;
         int aimDepth = 0;
@@ -23,7 +25,7 @@ public class Day2 {
                 switch (command) {
                     case "forward":
                         location[0] += value;
-                        aimDepth += value * aim;
+                        aimDepth += value * aim; // Part 2
                         break;
                     case "up":
                         location[1] -= value;
@@ -38,8 +40,11 @@ public class Day2 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
 
         System.out.println("Antwoord 1: " + location[0] * location[1]);
         System.out.println("Antwoord 2: " + location[0] * aimDepth);
+        System.out.println("Tijd: " + totalTime);
     }
 }

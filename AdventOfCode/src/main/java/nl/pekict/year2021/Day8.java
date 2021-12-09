@@ -12,6 +12,7 @@ public class Day8 {
 
     public static void solution() {
         // Part 1
+        long startTime = System.currentTimeMillis();
         int numbersCount = 0;
         int totalSum = 0;
         try (Scanner scanner = new Scanner(Paths.get("day8.txt"))) {
@@ -139,8 +140,11 @@ public class Day8 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
 
         System.out.println("Antwoord 1: " + numbersCount);
         System.out.println("Antwoord 2: " + totalSum);
+        System.out.println("Tijd: " + totalTime);
     }
 }

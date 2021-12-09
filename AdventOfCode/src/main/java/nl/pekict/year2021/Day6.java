@@ -11,6 +11,7 @@ public class Day6 {
 
     public static void solution() {
         // Part 1
+        long startTime = System.currentTimeMillis();
         long[][] groupedFish = new long[9][2]; // [x][0] = days, [x][1] = number of Fish
         int smallTotalFish = 0;
         long totalFish = 0;
@@ -49,8 +50,11 @@ public class Day6 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
         
         System.out.println("Antwoord 1: " + smallTotalFish);
         System.out.println("Antwoord 2: " + totalFish);
+        System.out.println("Tijd: " + totalTime);
     }
 }

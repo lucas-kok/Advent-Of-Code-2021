@@ -1,5 +1,7 @@
 package nl.pekict.year2021;
 
+import com.sun.security.jgss.GSSUtil;
+
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -10,6 +12,8 @@ public class Day1 {
     }
 
     public static void solution() {
+        // Part 1
+        long startTime = System.currentTimeMillis();
         int increasingNumberCount = 0;
         int previous = -1;
 
@@ -23,7 +27,6 @@ public class Day1 {
                 int number = Integer.valueOf(scanner.nextLine());
                 numbers[index] = number;
 
-                // Part 1
                 if (previous == -1) {
                     previous = number;
                 } else {
@@ -51,8 +54,11 @@ public class Day1 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
 
         System.out.println("Antwoord 1: " + increasingNumberCount);
         System.out.println("Antwoord 2: " + increasingRowCount);
+        System.out.println("Tijd: " + totalTime);
     }
 }

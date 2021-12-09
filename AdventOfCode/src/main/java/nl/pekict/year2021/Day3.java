@@ -11,6 +11,8 @@ public class Day3 {
     }
 
     public static void solution() {
+        // Part 1
+        long startTime = System.currentTimeMillis();
         int totalCount = 0;
         int[] zeros = new int[12];
         ArrayList<String> values = new ArrayList<>();
@@ -26,10 +28,8 @@ public class Day3 {
         int carbonRating = 0;
 
         try (Scanner scanner = new Scanner(Paths.get("day3.txt"))) {
-
-            // Part 1
             while (scanner.hasNextLine()) {
-                
+
                 // Counting the zero's on all indexes
                 String next = scanner.nextLine();
                 totalCount++;
@@ -57,8 +57,7 @@ public class Day3 {
             gammaValue = Integer.parseInt(gammaString.toString(), 2);
             epsilonValue = Integer.parseInt(epsilonString.toString(), 2);
 
-            // Part 2
-            // Calculating the Oxygen Rating
+            // Part 2, Calculating the Oxygen Rating
             zeros = new int[12];
 
             int index = 0;
@@ -90,10 +89,8 @@ public class Day3 {
                 if (values.size() == 1) {
                     break;
                 }
-
                 index++;
             }
-
             oxygenRating = Integer.parseInt(values.get(0).toString(), 2);
 
             // Calculating the Carbon Rating
@@ -128,17 +125,18 @@ public class Day3 {
                 if (values.size() == 1) {
                     break;
                 }
-
                 index++;
             }
-
             carbonRating = Integer.parseInt(values.get(0).toString(), 2);
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
 
         System.out.println("Antwoord 1: " + gammaValue * epsilonValue);
         System.out.println("Antwoord 2: " + oxygenRating * carbonRating);
+        System.out.println("Tijd: " + totalTime);
     }
 }

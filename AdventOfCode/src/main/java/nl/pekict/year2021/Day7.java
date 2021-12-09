@@ -14,6 +14,7 @@ public class Day7 {
     
     public static void solution() {
         // Part 1
+        long startTime = System.currentTimeMillis();
         ArrayList<Integer> positions = new ArrayList<>();
         int[] fuelNeeded = { (int)Math.pow(10, 10), (int)Math.pow(10, 10) };
         
@@ -51,8 +52,11 @@ public class Day7 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
         
         System.out.println("Antwoord 1: " + fuelNeeded[0]);
         System.out.println("Antwoord 2: " + fuelNeeded[1]);
+        System.out.println("Tijd: " + totalTime);
     }   
 }

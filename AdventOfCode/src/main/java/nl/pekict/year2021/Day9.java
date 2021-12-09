@@ -12,10 +12,12 @@ public class Day9 {
     
     public static void solution() {
         // Part 1
+        long startTime = System.currentTimeMillis();
         Map<String, Integer> depthMap = new HashMap();
         ArrayList<Integer> basinSizes = new ArrayList<>();
         int totalSum = 0;
         int totalMultiply = 1;
+
         try (Scanner scanner = new Scanner(Paths.get("day9.txt"))) {
             int index = 0;
             while (scanner.hasNextLine()) {
@@ -26,7 +28,7 @@ public class Day9 {
                 index++;
             }
 
-            ArrayList<String> ignoringPositions = new ArrayList<>();
+            Map<String, Integer> ignoringPositions = new HashMap();
             for (String key : depthMap.keySet()) {
                 int currentNumber = depthMap.get(key);
                 String[] pieces = key.split("-");
@@ -54,7 +56,7 @@ public class Day9 {
 
                     while (possibleCoords.size() != 0) {
                         String possiblePoint = possibleCoords.get(0);
-                        if (!ignoringPositions.contains(possiblePoint)) {
+                        if (ignoringPositions.get(possiblePoint) == null) {
                             String[] currentPieces = possiblePoint.split("-");
                             String[] currentSurroundingLocations = {
                                     currentPieces[0] + "-" + (Integer.parseInt(currentPieces[1]) + 1),
@@ -66,17 +68,12 @@ public class Day9 {
                             boolean isSmaller = false;
                             for (String location : currentSurroundingLocations) {
                                 if (depthMap.get(location) != null && depthMap.get(location) < 9) {
-                                    if (!isSmaller) {
-                                        isSmaller = true;
-                                    }
-
-                                    if (depthMap.get(location) != 9) {
-                                        possibleCoords.add(location);
-                                    }
+                                    isSmaller = true;
+                                    possibleCoords.add(location);
                                 }
                             }
 
-                            ignoringPositions.add(possiblePoint);
+                            ignoringPositions.put(possiblePoint , 0);
                             possibleCoords.remove(possiblePoint);
                             if (isSmaller) {
                                 basinSize++;
@@ -97,8 +94,11 @@ public class Day9 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime   = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
 
         System.out.println("Antwoord 1: " + totalSum);
         System.out.println("Antwoord 2: " + totalMultiply);
+        System.out.println("Tijd: " + totalTime);
     }
 }

@@ -10,8 +10,8 @@ public class Day5 {
     }
 
     public static void solution() {
-        
         // Part 1
+        long startTime = System.currentTimeMillis();
         int[][] simpleDataMap = new int[999][999];
         int[][] fullDataMap = new int[999][999]; // With vertical Lines
         
@@ -73,8 +73,11 @@ public class Day5 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
         
         System.out.println("Antwoord 1: " + overlappingTotal[0]);
         System.out.println("Antwoord 2: " + overlappingTotal[1]);
+        System.out.println("Tijd: " + totalTime);
     }
 }
