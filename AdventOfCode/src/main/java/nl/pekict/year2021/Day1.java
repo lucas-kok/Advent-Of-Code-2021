@@ -1,7 +1,5 @@
 package nl.pekict.year2021;
 
-import com.sun.security.jgss.GSSUtil;
-
 import java.nio.file.Paths;
 import java.util.Scanner;
 

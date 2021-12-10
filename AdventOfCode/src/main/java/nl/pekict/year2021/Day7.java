@@ -2,9 +2,7 @@
 package nl.pekict.year2021;
 
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class Day7 {
 
