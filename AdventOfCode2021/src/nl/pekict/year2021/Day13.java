@@ -13,10 +13,9 @@ public class Day13 {
         // Part 1
         long startTime = System.currentTimeMillis();
         int dotCount = 0;
-        String[][] visualisedGrid = new String[0][0];
+        int[][] grid = new int[895][1311];
 
         try (Scanner scanner = new Scanner(Paths.get("day13.txt"))) {
-            int[][] grid = new int[895][1311];
 
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
@@ -58,18 +57,13 @@ public class Day13 {
                 grid = newGrid;
             }
 
-            visualisedGrid = new String[grid.length][grid[0].length];
-            for (int i = 0; i < grid.length; i++) {
-                for (int j = 0; j < grid[i].length; j++) {
-                    if (grid[i][j] == 1) {
+            for (int[] ints : grid) {
+                for (int anInt : ints) {
+                    if (anInt == 1) {
                         dotCount++;
-                        visualisedGrid[i][j] = "#";
-                    } else {
-                        visualisedGrid[i][j] = ".";
                     }
                 }
             }
-
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -78,9 +72,17 @@ public class Day13 {
 
         System.out.println("Antwoord 1: " + dotCount);
         System.out.println("Antwoord 2: ");
-        for (String[] row : visualisedGrid) {
-            System.out.println(Arrays.toString(row));
+        for (int[] ints : grid) {
+            for (int anInt : ints) {
+                if (anInt == 1) {
+                    System.out.print("[#]");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
         }
+
         System.out.println("Tijd: " + totalTime + "ms");
     }
 }
