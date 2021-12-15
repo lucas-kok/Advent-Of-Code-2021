@@ -1,6 +1,7 @@
 package nl.pekict.year2021;
 
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day15 {
