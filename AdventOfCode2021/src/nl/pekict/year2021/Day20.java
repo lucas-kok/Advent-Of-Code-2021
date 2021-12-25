@@ -9,11 +9,12 @@ import java.util.stream.Collectors;
 
 public class Day20 {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         solution();
     }
 
     public static void solution() {
+        // Part 1
         long startTime = System.currentTimeMillis();
         int firstPixelCount = 0;
         int secondPixelCount = 0;
@@ -59,7 +60,7 @@ public class Day20 {
                         }
                     }
                     firstPixelCount = i == 1 ? count : firstPixelCount;
-                    secondPixelCount = i == 49 ? count : secondPixelCount;
+                    secondPixelCount = i == 49 ? count : secondPixelCount; // Part 2
                 }
             }
         } catch (Exception e) {
@@ -70,6 +71,6 @@ public class Day20 {
 
         System.out.println("Antwoord 1: " + firstPixelCount);
         System.out.println("Antwoord 2: " + secondPixelCount);
-        System.out.println("Tijd: " + totalTime);
+        System.out.println("Tijd: " + totalTime + "ms");
     }
 }
